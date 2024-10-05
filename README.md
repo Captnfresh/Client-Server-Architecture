@@ -110,12 +110,93 @@ image 6
 
 ## Step 3 - Allow acces to MySQL-SERVER from MySQL-CLIENT 
 
-1. Configure Security group
+1. Configure Security group: By default, MySQL uses TCP port 3306. To allow mysql-client to access mysql-server, we need to open port 3306.
+
+2. Go to AWS Management Console.
+
+3. Navigate to EC2 > Security Groups.
+
+4. Find the security group attached to mysql-server.
+
+5. Edit the Inbound rules:
+
+      Protocol: TCP
+      Port Range: 3306
+      Source: The private IP address of your `mysql-client` instance.
+
+6. Save the settings.
+
+   image 7
+      
+
+
+## Step 4 - Edit MySQL Configuration to Allow Remote Connections
+
+1. On mysql-server, open the MySQL configuration file and allow connections from remote hosts:
+
+   `sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf`
    
 
+2. Change the bind-address from initial ip to allow from anywhere 0.0.0.0
 
-   
+   image 8
 
+3. Restart MySQL:
+
+   `sudo systemctl restart mysql`
+
+
+## Step 5 - Connect `mysql-client` to `mysql-server` remotely
+
+1. Get `mysql-server` ip by:
+
+   `hostname -I`
+
+2. Go to `mysql-client` terminal window and connectc to `mysql-server` remotely
+
+   `mysql -u root -p -h <private-ip-of-mysql-server>`
+
+   When prompted, enter the root password you set during MySQL installation on the `mysql-server`
+
+
+3. When prompted, enter the password for `mysql-server`
+
+4. Test the connection by running:
+
+   `SHOW DATABASES;`
+
+   image 9
+
+
+Congratulations! Your Client-Server Architecture is created, we have successfully deployed a fully functional MySQL Client-Server Architecture on AWS.
+
+
+## Important to note:
+
+You might get errors when you run the command `mysql -u root -p -h <private-ip-of-mysql-server>`. Do not panic, I will show you possible ways of fixing that issue.
+
+### 1. Create a user first:
+
+`CREATE USER 'root'@'%' IDENTIFIED BY 'password';`
+
+Where % is the user or IP address you want to use
+      password is the pasword created during mysql installation at the root user `mysql-server`
+
+
+### 2. Grant Privileges to the User:
+
+`GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;`
+
+Where % is the user or IP address you want to use
+
+
+### 3. Flush Privileges:
+
+`FLUSH PRIVILEGES;`
+
+This will apply the changes instantly.
+
+### After all of this is done, you can proceed to Step 5 with no errors                                          
 
 
 
