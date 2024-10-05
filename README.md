@@ -21,7 +21,7 @@ The client and server communicate over a network (like the internet or a local a
 
 Web Browsing: When you enter a URL in your web browser (the client), the browser sends a request to a web server (the server) to retrieve the website. The server processes this request, finds the appropriate webpage, and sends it back to your browser to display.
 
-  image 1
+   ![image 1](https://github.com/Captnfresh/Client-Server-Architecture/blob/main/Client-Server%20Architecture/image%201.jpg)
 
 In summary, client-server architecture is a way of organizing how different parts of a computer system communicate and work together. It separates the user interface (client) from data storage and processing (server), making it easier to manage applications, resources, and users. This architecture is widely used in various applications, including web services, email, and file sharing.
 
@@ -30,7 +30,7 @@ In summary, client-server architecture is a way of organizing how different part
 
 If we extend the Client-Server concept further and add a Database Server to our architecture, we can get this picture:
 
-image 2
+   ![image 2](https://github.com/Captnfresh/Client-Server-Architecture/blob/main/Client-Server%20Architecture/image%202.jpg)
 
 In this case, our Web Server has a role of a "Client" that connects and reads/writes to/from a Database (DB) Server (MySQL, MongoDB, Oracle, SQL Server or any other), and the communication between them happens over a Local Network (it can also be Internet connection, but it is a common practice to place Web Server and DB Server close to each other in local network).
 
@@ -65,18 +65,18 @@ Ensure both instances are in the same VPC (Virtual Private Cloud) and subnet so 
 
 For security purposes, generate different key pair for SSH access.
 
-image 3
+   ![image 3](https://github.com/Captnfresh/Client-Server-Architecture/blob/main/Client-Server%20Architecture/image%203.jpg)
 
 5. Connect to both instance via SSH on different terminal windows
 
    `ssh -i your-key.pem ec2-user@<public-ip-address-of-ec2>`
    
 
-   image 4
+   ![image 4](https://github.com/Captnfresh/Client-Server-Architecture/blob/main/Client-Server%20Architecture/image%204.jpg)
 
    This is for `mysql-server` instance
 
-   image 5
+   ![image 5](https://github.com/Captnfresh/Client-Server-Architecture/blob/main/Client-Server%20Architecture/image%205.jpg)
 
    This is for `mysql-client` instance
 
@@ -103,7 +103,7 @@ image 3
 
 Follow the prompts to set root password and secure the database installation. 
 
-image 6
+   ![image 6](https://github.com/Captnfresh/Client-Server-Architecture/blob/main/Client-Server%20Architecture/image%206.jpg)
 
 #### Repeat the whole process of MySQL installation on `mysql-client`
 
@@ -126,7 +126,7 @@ image 6
 
 6. Save the settings.
 
-   image 7
+   ![image 7](https://github.com/Captnfresh/Client-Server-Architecture/blob/main/Client-Server%20Architecture/image%207.jpg)
       
 
 
@@ -139,7 +139,7 @@ image 6
 
 2. Change the bind-address from initial ip to allow from anywhere 0.0.0.0
 
-   image 8
+   ![image 8](https://github.com/Captnfresh/Client-Server-Architecture/blob/main/Client-Server%20Architecture/image%208.png)
 
 3. Restart MySQL:
 
@@ -165,7 +165,7 @@ image 6
 
    `SHOW DATABASES;`
 
-   image 9
+   ![image 9](https://github.com/Captnfresh/Client-Server-Architecture/blob/main/Client-Server%20Architecture/image%209.jpg)
 
 
 Congratulations! Your Client-Server Architecture is created, we have successfully deployed a fully functional MySQL Client-Server Architecture on AWS.
