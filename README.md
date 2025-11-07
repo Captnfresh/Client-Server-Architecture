@@ -4,7 +4,7 @@
 ## What is Client-Server Architecture?
 
 
-### 1. Basic Definition: 
+### 1. Basic Definition:
 
 In a client-server architecture, there are two main components: the client and the server. The client requests services or resources, while the server provides those services or resources.
 
